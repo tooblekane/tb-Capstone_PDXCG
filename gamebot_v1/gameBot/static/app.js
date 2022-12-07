@@ -4,19 +4,18 @@ const app = Vue.createApp({
         return{
             csrfToken: '',
             key: '5f251131a8a34cdd8d63feb4f69c4669',
-            search: 'Grand Theft Auto V'
         }
     },
     methods: {
         getsales(){
             axios({
-                url: `https://api.rawg.io/api/games?key=${this.key}&search=${this.search}`,
+                url: `https://api.rawg.io/api/games?key=${this.key}`,
                 method: 'GET',
             })
             .then(response => {
                 this.sales = response.data
                 // console.log(this.sales['results'][0]['id'])
-                console.log(response.data)
+                console.log(response.data['results'])
             })
             .catch(err => {
                 console.log(err)
@@ -30,5 +29,3 @@ const app = Vue.createApp({
         this.csrfToken = document.querySelector("input[name=csrfmiddlewaretoken]").value
     }
 })
-
-
