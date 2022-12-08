@@ -4,10 +4,11 @@ const app = Vue.createApp({
         return{
             csrfToken: '',
             key: '5f251131a8a34cdd8d63feb4f69c4669',
+            currentUser: {},
         }
     },
     methods: {
-        getsales(){
+        get_game_info(){
             axios({
                 url: `https://api.rawg.io/api/games?key=${this.key}`,
                 method: 'GET',
@@ -15,15 +16,26 @@ const app = Vue.createApp({
             .then(response => {
                 this.sales = response.data
                 // console.log(this.sales['results'][0]['id'])
-                console.log(response.data['results'])
+                // console.log(response.data['results'])
             })
             .catch(err => {
                 console.log(err)
             })
+        },
+
+        loadCurrentUser(){
+            axios({
+                method: 'get',
+                url: '../../users/currentuser/'
+            }).then(response => {
+                this.currentUser = response.data
+                // console.log('CU', this.currentUser)
+            })
         }
     },
     created: function() {
-        this.getsales()
+        // this.get_game_info()
+        this.loadCurrentUser()
     },
     mounted(){
         this.csrfToken = document.querySelector("input[name=csrfmiddlewaretoken]").value

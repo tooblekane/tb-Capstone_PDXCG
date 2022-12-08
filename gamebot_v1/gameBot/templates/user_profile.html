@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<p>Sup [[currentUser.username]] <p><br>
+{% comment %} <div id="profile_users_movies">
+    <div id="movie_card" v-for="movie in currentUser.movie_detail">
+        <img id="movie_card_cover":src="movie.cover" v-if="movie.cover">
+            <div id="movie_card_text">
+                <p>[[movie.title]]</p>
+                <p>[[movie.year]] [[movie.genre]]</p>
+                <div id="streaming_services">
+                    <div class="streaming_icon" id="on_netflix" v-if="movie.onNetflix">N
+                        <span class="streaming_tooltip" id="on_netflix">Netflix</span>
+                    </div>
+                    
+                    <div class="streaming_icon" id="on_hulu" v-if="movie.onHulu">H
+                        <span class="streaming_tooltip" id="on_hulu">Hulu</span>
+                    </div>
+                    
+                    <div class="streaming_icon" id="on_amazon" v-if="movie.onAmazon">A
+                        <span class="streaming_tooltip" id="on_amazon">Amazon</span>
+                    </div>
+                    
+                    <div class="streaming_icon" id="on_max" v-if="movie.onMAX">M
+                        <span class="streaming_tooltip" id="on_max">HBO Max</span>
+                    </div>
+                </div>
+            </div>
+        </img>
+    </div>
+</div><br> {% endcomment %}
+
+</body>
+</html>
+
+{% endblock content %}

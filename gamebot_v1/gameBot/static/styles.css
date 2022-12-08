@@ -17,20 +17,25 @@ html, body {
 
 #navbar {
     display: flex;
-    height: 2rem;
-    justify-content: right;
-    align-items:center;
+    height: 1.5rem;
+    justify-content:space-between;
     gap: 1rem;
-
 }
 
-#navbar_links {
-    display: flex;
-    gap: 1rem;
+#navbar a {
+    padding-top: 0.2rem;
+    color: white;
+    text-decoration: none;
 }
 
 #logo {
     height: 2rem;
+}
+
+#navbar_left, #navbar_right {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
 }
 
 #main_list_wrapper {
