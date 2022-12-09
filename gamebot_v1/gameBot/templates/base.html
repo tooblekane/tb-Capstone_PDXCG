@@ -15,7 +15,8 @@
         <div id="navbar">
             <div id="navbar_left">
                 <img id="logo" src="{% static './gamebot_logo.png' %}">
-                <input id="search" placeholder="Search...">
+                <input id="search_input" type="text" v-model="searchInput">
+                <button @click="gameSearch()">Go</button>
                 {% if user.is_authenticated %}
                     <a href="">wishlist</a>
                     <a href="">notifications</a>
