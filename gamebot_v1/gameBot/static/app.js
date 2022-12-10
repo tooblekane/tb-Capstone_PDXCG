@@ -7,49 +7,29 @@ const app = Vue.createApp({
             currentUser: {},
             game_search: '',
             game_info: '',
-            searchInput: '',
-            gameID: 0,
+            searchInput: 'portal 2',
             name: '',
             description: '',
             genres: [],
             storeid: 1,
-            tags: [],
             searching: 0,
+            background_image: '',
+            backgroundColor: 'blue',
+            gameID: 0,
+            current_game: {},
+            current_screenshots: {},
         }
     },
     methods: {
-        getGameInfo(gameID){
-            this.searching = 0
-            this.gameID = gameID
-            axios({
-                url: `https://api.rawg.io/api/games/${this.gameID}?key=${this.key}`,
-                method: 'GET',
-            })
-            .then(response => {
-                console.log(response.data)
-                this.game_info = response.data
-                this.name = this.game_info['name']
-                this.genres = this.game_info['genres']
-                this.description = this.game_info['description']
-                this.tags = this.game_info['tags']
-                // console.log(this.gameInfo['results'][0]['id'])
-                // console.log(response.data['results'])
-            })
-            .catch(err => {
-                console.log(err)
-            })
-        },
-
         gameSearch(){
             axios({
-                // url: `https://api.rawg.io/api/games/5679?key=${this.key}`,
                 url: `https://api.rawg.io/api/games?key=${this.key}&search=${this.searchInput}`,
                 method: 'GET',
             })
             .then(response => {
                 this.searching = 1
                 this.game_search = response.data['results']
-                // console.log(this.game_search[2].name)
+                // console.log(this.game_search[0])
                 // console.log(this.game_search[2].id)
                 // console.log(this.search['results'][0])
                 // this.name = this.search['results'][0]['name']
@@ -57,6 +37,43 @@ const app = Vue.createApp({
                 // console.log(this.name)
                 // console.log(this.genres)
                 // console.log(response.data['results'])
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        },
+        
+        getGameInfo(gameID){
+            this.searching = 2
+            this.gameID = gameID
+            axios({
+                url: `https://api.rawg.io/api/games/${this.gameID}?key=${this.key}`,
+                method: 'GET',
+            })
+            .then(response => {
+                this.current_game = response.data
+                // console.log(this.current_game)
+                this.name = this.current_game['name']
+                this.genres = this.current_game['genres']
+                this.description = this.current_game['description_raw']
+                this.background_image = this.current_game['background_image']
+                this.getScreenshots(this.gameID)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        },
+
+        getScreenshots(gameID){
+            
+            axios({
+                url: `https://api.rawg.io/api/games/${this.gameID}/screenshots?key=${this.key}`,
+                method: 'GET',
+            })
+            .then(response => {
+                this.current_screenshots = response.data
+                this.current_game = Object.assign(this.current_game, this.current_screenshots)
+                console.log(this.current_game)
             })
             .catch(err => {
                 console.log(err)

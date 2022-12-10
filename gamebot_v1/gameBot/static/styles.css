@@ -6,13 +6,13 @@ html, body {
     height: 100vh;
     overflow: hidden;
     color: white;
+    font-size: small;
     background-image: linear-gradient(#26292e, #090110);
 }
 
 #app {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
 }
 
 #navbar {
@@ -44,16 +44,16 @@ html, body {
     height: 60vh;
     width: 95vw;
     gap: 1rem;
-    margin-inline: auto;
+    /* margin-inline: auto; */
+    margin: 1rem;
 }
 
 /****** SALE LIST ******/
 #sale_list_wrapper{
     height: 60vh;
     width: 20vw;
-    
     background-color: #26292e;
-    border: 1px solid purple;
+    /* border: 1px solid purple; */
 }
 
 /****** WISH LIST ******/
@@ -61,29 +61,19 @@ html, body {
     padding-left: 1rem;
 }
 
-/****** GAME INFO ******/
-#game_info_wrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 60vh;
-    max-height: 60vh;
-    width: 36vw;
-    gap: 1rem;
-    background-color: #26292e;
-    border: 1px dashed darkred;
-}
-
+/****** SEARCH ******/
 #game_search_wrapper{
     display: flex;
     flex-direction: column;
-    /* justify-content: space-around; */
     height: 60vh;
-    overflow: hidden;
     width: 73vw;
     gap: 1rem;
+    /* justify-content: space-around; */
+    overflow: hidden;
+    text-overflow: ellipsis;
     background-color: #26292e;
-    border: 1px dashed darkred;
+
+    /* border: 1px dashed darkred; */
 }
 
 #game_search_results {
@@ -91,63 +81,108 @@ html, body {
     flex-direction: column;
     font-size: xx-small;
     height: 60vh;
-    /* overflow:scroll; */
-    
-
 }
 
-#game_info_name{
+/****** GAME INFO ******/
+#game_page{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 60vh;
+    max-height: 60vh;
+    width: 36vw;
+    background-color: #26292e;
+    font-size: 5pt;
+    /* border: 1px dashed darkred; */
+}
+
+#bg_image{
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: 100%;
+    opacity: 0.2;
+}
+
+#game_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position:absolute;
+    height: 60vh;
+    max-height: 60vh;
+    width: 36vw;
+    /* border: 1px dashed darkred; */
+}
+
+#game_name{
     display: flex;
     flex-direction: column;
     justify-content:center;
-    height: 10vh;
+    height: 10%;
     width: 33vw;
-    margin-top: 1rem;
     margin-inline: auto;
-    background-color: #26292e;
-    border: 1px dashed darkred;
+    margin-block: 1rem;
+    
+    /* background-color: #26292e; */
+    /* border: 1px dashed darkred; */
 }
 
 #game_info_description{
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content:center;
-    height: 15vh;
-    max-height: 15vh;
-    overflow: hidden;
+    font-size: 3pt;
     width: 33vw;
+    height:60%;
     margin-inline: auto;
-    background-color: #26292e;
-    border: 1px dashed darkred;
+    /* max-height: 20rem; */
+    /* white-space: wrap; */
+    /* overflow:visible; */
+    /* text-overflow:ellipsis ; */
+    /* background-color: #26292e; */
+
+    /* border: 1px dashed darkred; */
 }
-#game_info_description span{
-    height: 15vh;
-    max-height: 15vh;
-    /* overflow: hidden; */
+#game_info_description p{
+    height: 100%;
+    margin: auto;
+    
+    overflow:scroll;
+    text-overflow:ellipsis ;
 }
 
-#game_info_tags {
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
+#game_genre_list {
     display: flex;
-    flex-direction: column;
-    justify-content:center;
-    height: 5vh;
-    max-height: 10vh;
-    width: 33vw;
-    margin-inline: auto;
-    background-color: #26292e;
-    border: 1px dashed darkred;
+    width: fit-content;
+    gap: 1rem;
+}
+
+#game_genre {
+    padding: 0.3rem;
+    background-color: rgba(37, 36, 44, 0.5);
+    outline: 1px solid #2d3b56;
 }
 
 #game_info_stores {
     display: flex;
     flex-direction: column;
     justify-content:center;
-    height: 20vh;
+    height: 10%;
     width: 33vw;
-    margin-bottom: 1rem;
     margin-inline: auto;
-    background-color: #26292e;
-    border: 1px dashed darkred;
+    margin-block: 1rem;
+    /* background-color: #26292e; */
+    /* border: 1px dashed darkred; */
+}
+
+#steam_logo{
+    width: 3rem;
 }
 
 /****** GAME MEDIA ******/
@@ -155,7 +190,7 @@ html, body {
     height: 60vh;
     width: 35vw;
     background-color: #26292e;
-    border: 1px dashed red;
+    /* border: 1px dashed red; */
 }
 
 /****** BOTTOM LINKS ******/

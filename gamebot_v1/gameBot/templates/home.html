@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 
 <div id="main_list_wrapper">
     
@@ -9,35 +10,39 @@
         <p id="wishlist">wishlist 3</p>
     </div>
     
-    <div id="game_search_wrapper" v-if="gameID === 0">
+    <div id="game_search_wrapper" v-if="searching != 2">
         <p v-if="searching === 0">1. no game chosen</p>
         {% comment %} <li id="game_search_results" v-if="gameID === 0 && searching === 1"> {% endcomment %}
         <div id="game_search_results" v-for="game in game_search">
             <p @click="getGameInfo(game.id)">[[game.name]] - [[game.id]]</p>
+            {% comment %} <p @click="getGameInfo(game.slug)">[[game.name]]</p> {% endcomment %}
         </div>
     </div>
 
-    <div id="game_info_wrapper" v-if="gameID != 0">
-        <div id="game_page">
-            <div id="game_info_name">
+    <div id="game_page" v-if="searching === 2">
+        <img id="bg_image" :src="this.background_image" v-if="background_image">
+        
+        <div id="game_info">
+            <div id="game_name">
                 <p>[[this.name]]</p>
-                <div id="genre_list" v-for="genre in genres">
-                    <p>[[genre.name]]</p>
+                <div id="game_genre_list">
+                    <p id="game_genre" v-for="genre in genres">[[genre.name]]</p>
                 </div>
             </div>
+
             <div id="game_info_description">
-                <p>[[this.description]]</p>
+                <p id="game_description">[[this.description]]</p>
+                
             </div>
-            <div id="game_info_tags">
-                {% comment %} <p>[[this.tags]]</p> {% endcomment %}
-            </div>
+            
             <div id="game_info_stores">
-                <p>store links</p>
+                <img id="steam_logo" src="{% static './steam_icon.png' %}">
             </div>
         </div>
+        
     </div>
 
-    <div id="game_media_wrapper" v-if="gameID != 0">
+    <div id="game_media_wrapper" v-if="searching === 2">
     </div>
 
 
