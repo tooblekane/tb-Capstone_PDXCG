@@ -38,20 +38,20 @@ html, body {
     align-items: center;
 }
 
-#main_list_wrapper {
+#main_wrapper {
     display: flex;
     justify-content: left;
     height: 60vh;
-    width: 95vw;
+    width: 100vw;
     gap: 1rem;
     /* margin-inline: auto; */
     margin: 1rem;
 }
 
 /****** SALE LIST ******/
-#sale_list_wrapper{
+#wishlist_wrapper{
     height: 60vh;
-    width: 20vw;
+    width: 10vw;
     background-color: #26292e;
     /* border: 1px solid purple; */
 }
@@ -66,7 +66,7 @@ html, body {
     display: flex;
     flex-direction: column;
     height: 60vh;
-    width: 73vw;
+    width: 80vw;
     gap: 1rem;
     /* justify-content: space-around; */
     overflow: hidden;
@@ -84,35 +84,36 @@ html, body {
 }
 
 /****** GAME INFO ******/
-#game_page{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 60vh;
-    max-height: 60vh;
-    width: 36vw;
-    background-color: #26292e;
-    font-size: 5pt;
-    /* border: 1px dashed darkred; */
-}
-
 #bg_image{
     margin: 0;
     padding: 0;
-    width: auto;
-    height: 100%;
+    width:inherit;
+    height: height;
     opacity: 0.2;
+}
+
+#game_page{
+    display: flex;
+    position:relative;
+    justify-content: space-around;
+    /* gap: 2rem; */
+    height: 60vh;
+    width: 85vw;
+    font-size: 5pt;
+    background-color: #26292e;
+    /* border: 1px dashed darkred; */
 }
 
 #game_info {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     position:absolute;
-    height: 60vh;
-    max-height: 60vh;
-    width: 36vw;
-    /* border: 1px dashed darkred; */
+    justify-content:flex-start ;
+    left: 0;
+    margin: 1rem;
+    height: 100%;
+    /* width: 50%; */
+    /* border: 1px dashed red; */
 }
 
 #game_name{
@@ -120,9 +121,9 @@ html, body {
     flex-direction: column;
     justify-content:center;
     height: 10%;
-    width: 33vw;
-    margin-inline: auto;
-    margin-block: 1rem;
+    width: 40vw;
+    margin-inline: 1rem;
+    margin-bottom: 1rem;
     
     /* background-color: #26292e; */
     /* border: 1px dashed darkred; */
@@ -132,29 +133,23 @@ html, body {
     display: flex;
     /* flex-direction: column; */
     justify-content:center;
+    /* text-align: justify; */
     font-size: 3pt;
-    width: 33vw;
+    width: 37vw;
     height:60%;
-    margin-inline: auto;
-    /* max-height: 20rem; */
-    /* white-space: wrap; */
-    /* overflow:visible; */
-    /* text-overflow:ellipsis ; */
-    /* background-color: #26292e; */
-
+    margin-inline: 1rem;
     /* border: 1px dashed darkred; */
 }
 #game_info_description p{
     height: 100%;
     margin: auto;
-    
     overflow:scroll;
     text-overflow:ellipsis ;
 }
 
 ::-webkit-scrollbar {
     width: 0px;
-    background: transparent; /* make scrollbar transparent */
+    background: transparent;
 }
 
 #game_genre_list {
@@ -174,11 +169,18 @@ html, body {
     flex-direction: column;
     justify-content:center;
     height: 10%;
-    width: 33vw;
-    margin-inline: auto;
-    margin-block: 1rem;
-    /* background-color: #26292e; */
+    width: 40vw;
+    margin-inline: 1rem;
+    margin-bottom: 1rem;
+    /* margin: 1rem; */
+    /* margin-inline: auto; */
+    /* margin-bottom: 1rem; */
     /* border: 1px dashed darkred; */
+}
+
+#stores_steam {
+    display: flex;
+    flex-direction: column;
 }
 
 #steam_logo{
@@ -186,13 +188,53 @@ html, body {
 }
 
 /****** GAME MEDIA ******/
-#game_media_wrapper{
-    height: 60vh;
-    width: 35vw;
-    background-color: #26292e;
-    /* border: 1px dashed red; */
+#game_media{
+    display: flex;
+    flex-direction: column;
+    position:absolute;
+    right: 0;
+    justify-content: space-between;
+    height: 100%;
+    width: 50%;
+    /* background-color: #26292e; */
+    /* border: 1px dashed blue; */
 }
 
+#big_screenshot {
+    display: flex;
+    flex-direction: column;
+    margin:1rem;
+}
+
+#current_screenshot {
+    display: flex;
+    /* position: absolute; */
+    /* right: 1rem; */
+    width: 100%;
+    height: auto;
+    /* margin-right: 1rem; */
+    /* margin-top: 1rem; */
+    /* margin: 1rem; */
+}
+
+#thumbnails{
+    display: flex;
+    height: 10vh;
+    margin-inline: 1rem;
+    margin-bottom: 1rem;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+#thumbnails p{
+    display: flex;
+    width: 6rem;
+    height: 3rem;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+}
 /****** BOTTOM LINKS ******/
 #bottom_links_wrapper{
     display: flex;

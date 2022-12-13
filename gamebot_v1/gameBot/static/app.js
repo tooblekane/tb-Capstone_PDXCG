@@ -4,20 +4,19 @@ const app = Vue.createApp({
         return{
             csrfToken: '',
             key: '5f251131a8a34cdd8d63feb4f69c4669',
-            currentUser: {},
             game_search: '',
             game_info: '',
             searchInput: 'portal 2',
-            name: '',
-            description: '',
             genres: [],
-            storeid: 1,
             searching: 0,
             background_image: '',
             backgroundColor: 'blue',
             gameID: 0,
+            currentUser: {},
             current_game: {},
             current_screenshots: {},
+            current_screenshot: '',
+            current_stores: {},
         }
     },
     methods: {
@@ -28,15 +27,8 @@ const app = Vue.createApp({
             })
             .then(response => {
                 this.searching = 1
-                this.game_search = response.data['results']
-                // console.log(this.game_search[0])
-                // console.log(this.game_search[2].id)
-                // console.log(this.search['results'][0])
-                // this.name = this.search['results'][0]['name']
-                // this.genres = this.search['results'][0]['genres']
-                // console.log(this.name)
-                // console.log(this.genres)
                 // console.log(response.data['results'])
+                this.game_search = response.data['results']
             })
             .catch(err => {
                 console.log(err)
@@ -51,11 +43,9 @@ const app = Vue.createApp({
                 method: 'GET',
             })
             .then(response => {
+                console.log(response.data)
                 this.current_game = response.data
-                // console.log(this.current_game)
-                this.name = this.current_game['name']
                 this.genres = this.current_game['genres']
-                this.description = this.current_game['description_raw']
                 this.background_image = this.current_game['background_image']
                 this.getScreenshots(this.gameID)
             })
@@ -67,13 +57,29 @@ const app = Vue.createApp({
         getScreenshots(gameID){
             
             axios({
-                url: `https://api.rawg.io/api/games/${this.gameID}/screenshots?key=${this.key}`,
+                url: `https://api.rawg.io/api/games/${this.gameID}/screenshots?key=${this.key}&count=24`,
                 method: 'GET',
             })
             .then(response => {
-                this.current_screenshots = response.data
-                this.current_game = Object.assign(this.current_game, this.current_screenshots)
-                console.log(this.current_game)
+                // console.log(response.data)
+                this.current_screenshots = response.data.results
+                this.current_screenshot = this.current_screenshots[0].image // move this to the change SS function later and make index a variable
+                this.getStores(this.gameID)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        },
+
+        getStores(gameID){
+            
+            axios({
+                url: `https://api.rawg.io/api/games/${this.gameID}/stores?key=${this.key}`,
+                method: 'GET',
+            })
+            .then(response => {
+                // console.log(response.data)
+                this.current_stores = response.data.results
             })
             .catch(err => {
                 console.log(err)
@@ -86,18 +92,14 @@ const app = Vue.createApp({
                 url: '../../users/currentuser/'
             }).then(response => {
                 this.currentUser = response.data
-                // console.log('CU', this.currentUser)
             })
         },
 
     },
     created: function() {
         this.loadCurrentUser()
-        // this.getGameInfo()
-        // this.gameSearch()
     },
     mounted(){
-        // console.log(this.search_input.value)
         this.csrfToken = document.querySelector("input[name=csrfmiddlewaretoken]").value
     }
 })

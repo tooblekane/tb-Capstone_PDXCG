@@ -2,9 +2,9 @@
 {% block content %}
 {% load static %}
 
-<div id="main_list_wrapper">
+<div id="main_wrapper">
     
-    <div id="sale_list_wrapper">
+    <div id="wishlist_wrapper">
         <p id="wishlist">wishlist 1</p>
         <p id="wishlist">wishlist 2</p>
         <p id="wishlist">wishlist 3</p>
@@ -14,37 +14,42 @@
         <p v-if="searching === 0">1. no game chosen</p>
         {% comment %} <li id="game_search_results" v-if="gameID === 0 && searching === 1"> {% endcomment %}
         <div id="game_search_results" v-for="game in game_search">
-            <p @click="getGameInfo(game.id)">[[game.name]] - [[game.id]]</p>
-            {% comment %} <p @click="getGameInfo(game.slug)">[[game.name]]</p> {% endcomment %}
+            <p @click="getGameInfo(game.id)">[[game.name]]</p>
         </div>
     </div>
 
     <div id="game_page" v-if="searching === 2">
         <img id="bg_image" :src="this.background_image" v-if="background_image">
-        
         <div id="game_info">
             <div id="game_name">
-                <p>[[this.name]]</p>
+                {% comment %} <p>[[this.name]]</p> {% endcomment %}
+                <p>[[this.current_game.name]]</p>
                 <div id="game_genre_list">
                     <p id="game_genre" v-for="genre in genres">[[genre.name]]</p>
                 </div>
             </div>
-
             <div id="game_info_description">
-                <p id="game_description">[[this.description]]</p>
-                
+                <p id="game_description">[[this.current_game.description_raw]]</p>
             </div>
             
-            <div id="game_info_stores">
-                <img id="steam_logo" src="{% static './steam_icon.png' %}">
+            {% comment %} expand this out to all stores once it's working {% endcomment %}
+            <div id="game_info_stores" v-for="store in current_stores">
+                <div id="stores_steam" v-if="store.store_id === 1">
+                    <a v-bind:href="store.url"><img id="steam_logo" src="{% static './steam_icon.png' %}"></a>
+                    <p>price</p>
+                </div>
             </div>
         </div>
-        
+            
+        <div id="game_media" v-if="searching === 2">
+            <div id="big_screenshot">
+                <img id="current_screenshot" :src="this.current_screenshot">
+            </div>
+            <div id="thumbnails">
+                <p v-for="screenshot in current_screenshots">image</p>
+            </div>
+        </div>
     </div>
-
-    <div id="game_media_wrapper" v-if="searching === 2">
-    </div>
-
 
 </div>
 
