@@ -136,7 +136,7 @@ html, body {
     /* text-align: justify; */
     font-size: 3pt;
     width: 37vw;
-    height:60%;
+    max-height:55%;
     margin-inline: 1rem;
     /* border: 1px dashed darkred; */
 }
@@ -167,24 +167,36 @@ html, body {
 #game_info_stores {
     display: flex;
     flex-direction: column;
-    justify-content:center;
+    position: relative;
+    bottom: 1rem;
     height: 10%;
     width: 40vw;
     margin-inline: 1rem;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
     /* margin: 1rem; */
     /* margin-inline: auto; */
     /* margin-bottom: 1rem; */
-    /* border: 1px dashed darkred; */
 }
 
 #stores_steam {
     display: flex;
     flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+    /* border: 1px dashed darkred; */
 }
 
 #steam_logo{
     width: 3rem;
+}
+
+#steam_normal{
+    color: grey;
+    text-decoration: line-through;
+}
+
+#steam_sale{
+    color: yellow;
 }
 
 /****** GAME MEDIA ******/

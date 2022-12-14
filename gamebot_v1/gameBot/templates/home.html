@@ -36,7 +36,9 @@
             <div id="game_info_stores" v-for="store in current_stores">
                 <div id="stores_steam" v-if="store.store_id === 1">
                     <a v-bind:href="store.url"><img id="steam_logo" src="{% static './steam_icon.png' %}"></a>
-                    <p>price</p>
+                    {% comment %} <p>ID - [[steamID]]</p> {% endcomment %}
+                    <p id="steam_normal">Normal Price: [[this.current_prices.normalPrice]]</p>
+                    <p id="steam_sale">Salel Price: [[this.current_prices.salePrice]]</p>
                 </div>
             </div>
         </div>
