@@ -8,6 +8,7 @@ const app = Vue.createApp({
             game_info: '',
             searchInput: '',
             slug: '',
+            name: '',
             genres: [],
             searching: 0,
             background_image: '',
@@ -30,8 +31,6 @@ const app = Vue.createApp({
             })
             .then(response => {
                 this.searching = 1
-                // console.log(urltest)
-                // console.log(response.data['results'])
                 this.game_search = response.data['results']
             })
             .catch(err => {
@@ -47,12 +46,15 @@ const app = Vue.createApp({
                 method: 'GET',
             })
             .then(response => {
+                // console.log('getGameInfo:')
                 // console.log(response.data)
                 this.current_game = response.data
                 this.genres = this.current_game['genres']
                 this.background_image = this.current_game['background_image']
                 this.slug = this.current_game['slug']
-                console.log(this.slug)
+                this.name = this.current_game['name'].replace(/\`|\~|\!|\@|\#|\$|\^|\&|\*|\(|\)|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|\d/g, "").toLowerCase()
+                this.name = this.name.replace(/\W/g, "%20")
+                // console.log('Name Stripped: ' + this.name)
                 this.getScreenshots(this.gameID)
             })
             .catch(err => {
@@ -67,6 +69,7 @@ const app = Vue.createApp({
                 method: 'GET',
             })
             .then(response => {
+                // console.log('getScreenshots:')
                 // console.log(response.data)
                 this.current_screenshots = response.data.results
                 this.current_screenshot = this.current_screenshots[0].image // move this to the change SS function later and make index a variable
@@ -80,17 +83,17 @@ const app = Vue.createApp({
         getStores(gameID){
             
             axios({
-                url: `https://api.rawg.io/api/games/${this.gameID}/stores?key=${this.key}`,
+                url: `https://api.rawg.io/api/games/${this.slug}/stores?key=${this.key}`,
                 method: 'GET',
             })
             .then(response => {
+                // console.log('getStores:')
+                // console.log(response.data.results)
                 this.current_stores = response.data.results
-                // console.log(this.current_stores)
                 for (let i = 0; i < this.current_stores.length; i++) {
                     if (this.current_stores[i].store_id === 1){
-                        // console.log(this.current_stores[i].url)
-                        // this.steamID = this.current_stores[i].url.split(/\//)[4]
-                        // console.log('Steam ID: ' + this.steamID)
+                        this.steamID = this.current_stores[i].url.split(/\//)[4]
+                        console.log('Steam ID: ' + this.steamID)
                         this.getGamePrice()
                     }
                 }
@@ -101,17 +104,16 @@ const app = Vue.createApp({
         },
 
         getGamePrice(){
-            // Wednesday---- Do this in 2 parts: Search with slug, then run a loop getting matching name and steamID (check Portal 2 to see if this works).
-            // Get dealID from that, then pull exact pricing info
             axios({
-                // url: `https://www.cheapshark.com/api/1.0/deals?storeID=1&steamAppID=${this.steamID}`,
-                url: `https://www.cheapshark.com/api/1.0/deals?storeID=1&title=${this.slug}`,
+                url: `https://www.cheapshark.com/api/1.0/deals?storeID=1&title=${this.name}&steamAppID=${this.steamID}`,
                 method: 'GET',
             })
             .then(response => {
-                // console.log(url)
+                // console.log(response.data[0])
                 this.current_prices = response.data[0]
-                console.log(this.current_prices)
+            })
+            .catch(err => {
+                console.log(err)
             })
         },
 

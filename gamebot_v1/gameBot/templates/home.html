@@ -33,12 +33,18 @@
             </div>
             
             {% comment %} expand this out to all stores once it's working {% endcomment %}
-            <div id="game_info_stores" v-for="store in current_stores">
-                <div id="stores_steam" v-if="store.store_id === 1">
-                    <a v-bind:href="store.url"><img id="steam_logo" src="{% static './steam_icon.png' %}"></a>
-                    {% comment %} <p>ID - [[steamID]]</p> {% endcomment %}
-                    <p id="steam_normal">Normal Price: [[this.current_prices.normalPrice]]</p>
-                    <p id="steam_sale">Salel Price: [[this.current_prices.salePrice]]</p>
+            <div id="game_info_stores_wrapper">
+                {% comment %} <div id="stores_none" v-if="!current_stores.length">
+                    <p>no steam link</p>
+                </div> {% endcomment %}
+                <div id="game_stores" v-for="store in current_stores">
+                    <div id="stores_steam" v-if="store.store_id === 1">
+                        <a v-bind:href="store.url"><img id="steam_logo" src="{% static './steam_icon.png' %}"></a>
+                        <p id="steam_not_onsale" v-if="this.current_prices.isOnSale === '0'">Price: [[this.current_prices.normalPrice]]</p>
+                        <p id="steam_onsale" v-if="this.current_prices.isOnSale === '1'">Normal Price: [[this.current_prices.normalPrice]]</p>
+                        <p id="steam_sale" v-if="this.current_prices.isOnSale === '1'">Salel Price: [[this.current_prices.salePrice]]</p>
+                    </div>
+                    
                 </div>
             </div>
         </div>
