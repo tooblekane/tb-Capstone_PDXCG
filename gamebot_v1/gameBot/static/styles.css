@@ -120,13 +120,43 @@ html, body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 10%;
-    width: 40vw;
-    margin-inline: 1rem;
+    max-height: 10%;
+    width: 90%;
+    /* margin-inline: 1rem; */
     margin-bottom: 1rem;
 
-    /* background-color: #26292e; */
     /* border: 1px dashed darkred; */
+}
+
+#wishlist_add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2rem;
+    height: 2rem;
+    
+    font-size: large;
+    font-weight: bold;
+    outline: 2px dotted gray;
+    color: gray;
+;
+    /* border: 1px solid green; */
+}
+
+#game_genre_list {
+    display: flex;
+    width: fit-content;
+    gap: 1rem;
+    /* border: 1px dashed darkred; */
+}
+
+#game_genre {
+    padding: 0.3rem;
+    background-color: rgba(37, 36, 44, 0.5);
+    outline: 1px solid #2d3b56;
 }
 
 #game_info_description {
@@ -151,18 +181,6 @@ html, body {
 ::-webkit-scrollbar {
     width: 0px;
     background: transparent;
-}
-
-#game_genre_list {
-    display: flex;
-    width: fit-content;
-    gap: 1rem;
-}
-
-#game_genre {
-    padding: 0.3rem;
-    background-color: rgba(37, 36, 44, 0.5);
-    outline: 1px solid #2d3b56;
 }
 
 #game_info_stores_wrapper {

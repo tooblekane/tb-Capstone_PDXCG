@@ -20,18 +20,24 @@
 
     <div id="game_page" v-if="searching === 2">
         <img id="bg_image" :src="this.background_image" v-if="background_image">
+        
         <div id="game_info">
             <div id="game_name">
-                {% comment %} <p>[[this.name]]</p> {% endcomment %}
                 <p>[[this.current_game.name]]</p>
-                <div id="game_genre_list">
-                    <p id="game_genre" v-for="genre in genres">[[genre.name]]</p>
-                </div>
+                {% comment %} <p id="icon_wishlist_remove">+</p> {% endcomment %}
             </div>
+            
+            <div id="wishlist_add">
+                <p @click="addToWishlist()">+</p>
+            </div>
+                
+            <div id="game_genre_list">
+                <p id="game_genre" v-for="genre in genres">[[genre.name]]</p>
+            </div>
+            
             <div id="game_info_description">
                 <p id="game_description">[[this.current_game.description_raw]]</p>
             </div>
-            
             {% comment %} expand this out to all stores once it's working {% endcomment %}
             <div id="game_info_stores_wrapper">
                 {% comment %} <div id="stores_none" v-if="!current_stores.length">
@@ -50,9 +56,11 @@
         </div>
             
         <div id="game_media" v-if="searching === 2">
+            
             <div id="big_screenshot">
                 <img id="current_screenshot" :src="this.current_screenshot">
             </div>
+            
             <div id="thumbnails">
                 <p v-for="screenshot in current_screenshots">image</p>
             </div>

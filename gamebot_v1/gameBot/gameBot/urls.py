@@ -5,13 +5,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
-from games import views
+# from games import views
 from rest_framework.routers import DefaultRouter
 
 app_name = 'gameBot'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include('api.urls')),
     path('', include('games.urls')),
     path('users/', include('django.contrib.auth.urls')),
     path('users/', include('users.urls')),

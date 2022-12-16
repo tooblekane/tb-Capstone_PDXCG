@@ -4,9 +4,9 @@ from django.views.generic.edit import CreateView
 from django.views.generic import DetailView
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
-from users.models import CustomUser
-from games.serializers import UserSerializer
-from games.permissions import IsAuthorOrReadOnly
+from users.models import CustomUser, Wishlist
+from api.serializers import UserSerializer, WishlistSerializer
+from api.permissions import IsAuthorOrReadOnly
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 
 class SignUpView(CreateView):
@@ -31,3 +31,10 @@ class UserProfileView(DetailView):
     
     def get_object(self):
         return get_object_or_404(CustomUser, username=self.kwargs['username'])
+
+class CurrentUserWishlistView(generics.RetrieveUpdateAPIView):
+    queryset = Wishlist
+    serializer_class = WishlistSerializer
+    def get_object(self):
+        # return self.request.user
+        return get_object_or_404(Wishlist, user=self.kwargs['user'])

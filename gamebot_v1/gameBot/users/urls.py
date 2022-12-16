@@ -11,5 +11,6 @@ router.register('users', views.UserViewSet, basename='users')
 urlpatterns = [
     path('signup/', SignUpView.as_view(), name='signup'),
     path('currentuser/', views.CurrentUserView.as_view()),
+    path('wishlist/', views.CurrentUserWishlistView.as_view()),
     path('<str:username>/', UserProfileView.as_view(), name='profile')
 ]

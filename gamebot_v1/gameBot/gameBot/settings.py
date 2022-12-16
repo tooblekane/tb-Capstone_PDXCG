@@ -31,7 +31,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'games.apps.GamesConfig',
-    'users.apps.UsersConfig'
+    'users.apps.UsersConfig',
+    'api.apps.ApiConfig'
 ]
     # 'users.apps.UsersConfig',
 

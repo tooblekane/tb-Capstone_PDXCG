@@ -6,7 +6,7 @@ const app = Vue.createApp({
             key: '5f251131a8a34cdd8d63feb4f69c4669',
             game_search: '',
             game_info: '',
-            searchInput: '',
+            searchInput: 'portal 2',
             slug: '',
             name: '',
             genres: [],
@@ -16,6 +16,7 @@ const app = Vue.createApp({
             gameID: 0,
             steamID: 0,
             currentUser: {},
+            userWishlist: {},
             current_game: {},
             current_screenshots: {},
             current_screenshot: '',
@@ -32,6 +33,7 @@ const app = Vue.createApp({
             .then(response => {
                 this.searching = 1
                 this.game_search = response.data['results']
+                // console.log(this.game_search)
             })
             .catch(err => {
                 console.log(err)
@@ -54,26 +56,9 @@ const app = Vue.createApp({
                 this.slug = this.current_game['slug']
                 this.name = this.current_game['name'].replace(/\`|\~|\!|\@|\#|\$|\^|\&|\*|\(|\)|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|\d/g, "").toLowerCase()
                 this.name = this.name.replace(/\W/g, "%20")
-                // console.log('Name Stripped: ' + this.name)
                 this.getScreenshots(this.gameID)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-        },
-
-        getScreenshots(gameID){
-            
-            axios({
-                url: `https://api.rawg.io/api/games/${this.gameID}/screenshots?key=${this.key}&count=24`,
-                method: 'GET',
-            })
-            .then(response => {
-                // console.log('getScreenshots:')
-                // console.log(response.data)
-                this.current_screenshots = response.data.results
-                this.current_screenshot = this.current_screenshots[0].image // move this to the change SS function later and make index a variable
                 this.getStores(this.gameID)
+                // console.log('Name Stripped: ' + this.name)
             })
             .catch(err => {
                 console.log(err)
@@ -86,17 +71,35 @@ const app = Vue.createApp({
                 url: `https://api.rawg.io/api/games/${this.slug}/stores?key=${this.key}`,
                 method: 'GET',
             })
-            .then(response => {
+            .then(stores_response => {
                 // console.log('getStores:')
-                // console.log(response.data.results)
-                this.current_stores = response.data.results
+                // console.log(stores_response.data.results)
+                this.current_stores = stores_response.data.results
                 for (let i = 0; i < this.current_stores.length; i++) {
                     if (this.current_stores[i].store_id === 1){
                         this.steamID = this.current_stores[i].url.split(/\//)[4]
-                        console.log('Steam ID: ' + this.steamID)
+                        // console.log('Steam ID: ' + this.steamID)
                         this.getGamePrice()
                     }
                 }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        },
+        
+        getScreenshots(gameID){
+            
+            axios({
+                url: `https://api.rawg.io/api/games/${this.gameID}/screenshots?key=${this.key}&count=24`,
+                method: 'GET',
+            })
+            .then(screenshots_response => {
+                // console.log('getScreenshots:')
+                // console.log(screenshots_response.data)
+                this.current_screenshots = screenshots_response.data.results
+                this.current_screenshot = this.current_screenshots[0].image // move this to the change SS function later and make index a variable
+                // this.getStores(this.gameID)
             })
             .catch(err => {
                 console.log(err)
@@ -108,9 +111,9 @@ const app = Vue.createApp({
                 url: `https://www.cheapshark.com/api/1.0/deals?storeID=1&title=${this.name}&steamAppID=${this.steamID}`,
                 method: 'GET',
             })
-            .then(response => {
-                // console.log(response.data[0])
-                this.current_prices = response.data[0]
+            .then(price_response => {
+                // console.log(price_response.data[0])
+                this.current_prices = price_response.data[0]
             })
             .catch(err => {
                 console.log(err)
@@ -121,9 +124,16 @@ const app = Vue.createApp({
             axios({
                 method: 'get',
                 url: '../../users/currentuser/'
-            }).then(response => {
-                this.currentUser = response.data
+            }).then(user_response => {
+                this.currentUser = user_response.data
+                // console.log(this.currentUser)
             })
+        },
+
+        addToWishlist(){
+            console.log(this.gameID)
+            console.log(this.current_game.name)
+            console.log(this.steamID)
         },
 
     },
