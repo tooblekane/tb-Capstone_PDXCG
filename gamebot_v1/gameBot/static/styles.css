@@ -50,6 +50,8 @@ html, body {
 
 /****** SALE LIST ******/
 #wishlist_wrapper {
+    display: flex;
+    flex-direction: column;
     height: 60vh;
     width: 10vw;
     background-color: #26292e;

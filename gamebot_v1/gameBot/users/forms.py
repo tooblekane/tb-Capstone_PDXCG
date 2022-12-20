@@ -15,9 +15,9 @@ class CustomUserChangeForm(UserChangeForm):
 class WishlistCreationForm(UserCreationForm):
     class Meta:
         model = Wishlist
-        fields = ('user', 'wishlist_name', 'wishlist_steamID')
+        fields = ('wishlist_owner', 'wishlist_game_name', 'wishlist_game_steamID')
 
 class WishlistChangeForm(UserChangeForm):
     class Meta:
         model = Wishlist
-        fields = ('user', 'wishlist_name', 'wishlist_steamID')
+        fields = ('wishlist_owner', 'wishlist_game_name', 'wishlist_game_steamID')

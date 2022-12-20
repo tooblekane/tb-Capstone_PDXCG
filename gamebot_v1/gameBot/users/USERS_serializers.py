@@ -4,10 +4,10 @@ from users.models import CustomUser, Wishlist
 class NestedWishlistSerializer(serializers.ModelSerializer):
     class Meta:
         model = Wishlist
-        fields = ('user', 'wishlist_name', 'wishlist_steamID')
+        fields = ('user', 'wishlist_name', 'wishlist_game_steamID')
 
 class WishlistSerializer(serializers.ModelSerializer):
     # movie_detail = NestedMovieSerializer(many=True, source='movies', read_only=True)
     class Meta:
         model = Wishlist
-        fields = ('user', 'wishlist_name', 'wishlist_steamID')
+        fields = ('user', 'wishlist_name', 'wishlist_game_steamID')

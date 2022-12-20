@@ -4,10 +4,13 @@
 
 <div id="main_wrapper">
     
-    <div id="wishlist_wrapper">
-        <p id="wishlist">wishlist 1</p>
-        <p id="wishlist">wishlist 2</p>
-        <p id="wishlist">wishlist 3</p>
+    <div id="wishlist_wrapper"> 
+        <div v-for="wish_game in wishlist">
+            <p v-if="this.currentUser.id === wish_game.wishlist_owner">[[wish_game.wishlist_game_name]]</p>
+            {% comment %} <p id="wishlist">wishlist 1</p> {% endcomment %}
+            {% comment %} <p id="wishlist">wishlist 2</p> {% endcomment %}
+            {% comment %} <p id="wishlist">wishlist 3</p> {% endcomment %}
+        </div>
     </div>
     
     <div id="game_search_wrapper" v-if="searching != 2">
@@ -25,10 +28,12 @@
             <div id="game_name">
                 <p>[[this.current_game.name]]</p>
                 {% comment %} <p id="icon_wishlist_remove">+</p> {% endcomment %}
+
             </div>
             
             <div id="wishlist_add">
                 <p @click="addToWishlist()">+</p>
+                {% comment %} <a href="{% url "users:user_wishlist" wishlist_game.id %}">+</a> {% endcomment %}
             </div>
                 
             <div id="game_genre_list">

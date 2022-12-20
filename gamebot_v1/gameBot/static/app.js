@@ -15,13 +15,14 @@ const app = Vue.createApp({
             backgroundColor: 'blue',
             gameID: 0,
             steamID: 0,
-            currentUser: {},
             userWishlist: {},
+            currentUser: {},
             current_game: {},
-            current_screenshots: {},
-            current_screenshot: '',
             current_stores: {},
             current_prices: {},
+            current_screenshot: '',
+            current_screenshots: {},
+            wishlist: {},
         }
     },
     methods: {
@@ -48,8 +49,6 @@ const app = Vue.createApp({
                 method: 'GET',
             })
             .then(response => {
-                // console.log('getGameInfo:')
-                // console.log(response.data)
                 this.current_game = response.data
                 this.genres = this.current_game['genres']
                 this.background_image = this.current_game['background_image']
@@ -58,7 +57,6 @@ const app = Vue.createApp({
                 this.name = this.name.replace(/\W/g, "%20")
                 this.getScreenshots(this.gameID)
                 this.getStores(this.gameID)
-                // console.log('Name Stripped: ' + this.name)
             })
             .catch(err => {
                 console.log(err)
@@ -123,22 +121,61 @@ const app = Vue.createApp({
         loadCurrentUser(){
             axios({
                 method: 'get',
-                url: '../../users/currentuser/'
+                url: '/users/currentuser/'
             }).then(user_response => {
                 this.currentUser = user_response.data
-                // console.log(this.currentUser)
+                // console.log('current user: ', this.currentUser)
+                // console.log(this.currentUser.id)
+                // console.log(this.wishlist)
             })
         },
 
         addToWishlist(){
-            console.log(this.gameID)
-            console.log(this.current_game.name)
-            console.log(this.steamID)
+            axios({
+                method: 'post',
+                url: '/api/wishlist/',
+                headers: {
+                    'X-CSRFToken': this.csrfToken
+                },
+                data: {
+                    "wishlist_owner" : this.currentUser.id,
+                    "wishlist_game_name": this.current_game.name,
+                    "wishlist_game_steamID": this.steamID,
+                }
+            }).then( response => {
+                console.log(response.data)
+                this.loadCurrentUserWishlist()
+            }).catch(error => {
+                console.log(error.response)
+            
+            })
+        },
+
+        loadCurrentUserWishlist(){
+            axios({
+                method: 'get',
+                url: '/api/wishlist/'
+            }).then(wishlist_response => {
+                this.wishlist = wishlist_response.data
+                
+                console.log('current wishlist: ', this.wishlist)
+            })
+        },
+
+        steamAPItest(){
+            axios({
+                method: 'get',
+                url: 'http://api.steampowered.com/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v0002/?gameid=400'
+            }).then(steam_response => {
+                console.log(steam_response)
+            })
         },
 
     },
     created: function() {
+        // this.steamAPItest()
         this.loadCurrentUser()
+        this.loadCurrentUserWishlist()
     },
     mounted(){
         this.csrfToken = document.querySelector("input[name=csrfmiddlewaretoken]").value

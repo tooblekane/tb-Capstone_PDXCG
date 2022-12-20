@@ -8,6 +8,10 @@ from users.models import CustomUser, Wishlist
 from api.serializers import UserSerializer, WishlistSerializer
 from api.permissions import IsAuthorOrReadOnly
 from .forms import CustomUserCreationForm, CustomUserChangeForm
+from django.contrib.auth.decorators import login_required
+from users.models import Wishlist
+from django.http import HttpResponseRedirect
+
 
 class SignUpView(CreateView):
     form_class = CustomUserCreationForm
@@ -37,4 +41,4 @@ class CurrentUserWishlistView(generics.RetrieveUpdateAPIView):
     serializer_class = WishlistSerializer
     def get_object(self):
         # return self.request.user
-        return get_object_or_404(Wishlist, user=self.kwargs['user'])
+        return get_object_or_404(Wishlist, user=self.kwargs['wishlist_owner'])
