@@ -15,17 +15,19 @@ html, body {
     flex-direction: column;
 }
 
+
+/****** NAVBAR ******/
 #navbar {
     display: flex;
-    height: 1.5rem;
     justify-content: space-between;
+    height: 1.5rem;
     gap: 1rem;
 }
 
 #navbar a {
     padding-top: 0.2rem;
-    color: white;
     text-decoration: none;
+    color: white;
 }
 
 #logo {
@@ -34,8 +36,8 @@ html, body {
 
 #navbar_left, #navbar_right {
     display: flex;
-    gap: 1rem;
     align-items: center;
+    gap: 1rem;
 }
 
 #main_wrapper {
@@ -44,23 +46,27 @@ html, body {
     height: 60vh;
     width: 100vw;
     gap: 1rem;
-    /* margin-inline: auto; */
     margin: 1rem;
-}
-
-/****** SALE LIST ******/
-#wishlist_wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 60vh;
-    width: 10vw;
-    background-color: #26292e;
-    /* border: 1px solid purple; */
 }
 
 /****** WISH LIST ******/
 #wishlist {
-    padding-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 60vh;
+    width: 10vw;
+    font-size: 8pt;
+    background-color: #26292e;
+}
+
+#wishlist_remove{
+    text-align: center;
+    width: fit-content;
+    padding: 0.1rem 0.3rem;
+    background-color: rgba(255, 0, 0, 0.316);
+    border-radius: 5px;
+    margin-block: 0rem;
+    /* border: 1px solid red; */
 }
 
 /****** SEARCH ******/
@@ -70,7 +76,6 @@ html, body {
     height: 60vh;
     width: 80vw;
     gap: 1rem;
-    /* justify-content: space-around; */
     overflow: hidden;
     text-overflow: ellipsis;
     background-color: #26292e;
@@ -124,28 +129,16 @@ html, body {
     justify-content: center;
     max-height: 10%;
     width: 90%;
-    /* margin-inline: 1rem; */
     margin-bottom: 1rem;
-
     /* border: 1px dashed darkred; */
 }
 
 #wishlist_add {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: absolute;
     top: 0;
     right: 0;
     width: 2rem;
     height: 2rem;
-    
-    font-size: large;
-    font-weight: bold;
-    outline: 2px dotted gray;
-    color: gray;
-;
-    /* border: 1px solid green; */
 }
 
 #game_genre_list {

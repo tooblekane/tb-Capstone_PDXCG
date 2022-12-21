@@ -4,18 +4,15 @@
 
 <div id="main_wrapper">
     
-    <div id="wishlist_wrapper"> 
-        <div v-for="wish_game in wishlist">
+    <div class="wrapper" id="wishlist"> 
+        <template v-for="(wish_game, wishlist_item_id) in wishlist">
             <p v-if="this.currentUser.id === wish_game.wishlist_owner">[[wish_game.wishlist_game_name]]</p>
-            {% comment %} <p id="wishlist">wishlist 1</p> {% endcomment %}
-            {% comment %} <p id="wishlist">wishlist 2</p> {% endcomment %}
-            {% comment %} <p id="wishlist">wishlist 3</p> {% endcomment %}
-        </div>
+            <p id="wishlist_remove" v-if="this.currentUser.id === wish_game.wishlist_owner" @click="removeFromWishlist(wish_game.wishlist_item_id)">remove</p>
+        </template>
     </div>
     
     <div id="game_search_wrapper" v-if="searching != 2">
-        <p v-if="searching === 0">1. no game chosen</p>
-        {% comment %} <li id="game_search_results" v-if="gameID === 0 && searching === 1"> {% endcomment %}
+        <p v-if="searching === 0">No game chosen</p>
         <div id="game_search_results" v-for="game in game_search">
             <p @click="getGameInfo(game.id)">[[game.name]]</p>
         </div>
@@ -23,19 +20,17 @@
 
     <div id="game_page" v-if="searching === 2">
         <img id="bg_image" :src="this.background_image" v-if="background_image">
-        
         <div id="game_info">
             <div id="game_name">
                 <p>[[this.current_game.name]]</p>
-                {% comment %} <p id="icon_wishlist_remove">+</p> {% endcomment %}
-
+                {% comment %} <p>[[this.current_game.id]]</p> {% endcomment %}
+                
             </div>
             
             <div id="wishlist_add">
-                <p @click="addToWishlist()">+</p>
-                {% comment %} <a href="{% url "users:user_wishlist" wishlist_game.id %}">+</a> {% endcomment %}
+                <img id="wishlist_add" @click="addToWishlist(this.steamID)" src="{% static './wishlist.png' %}">
             </div>
-                
+            
             <div id="game_genre_list">
                 <p id="game_genre" v-for="genre in genres">[[genre.name]]</p>
             </div>
@@ -43,25 +38,26 @@
             <div id="game_info_description">
                 <p id="game_description">[[this.current_game.description_raw]]</p>
             </div>
-            {% comment %} expand this out to all stores once it's working {% endcomment %}
+            
+            {% comment %} TODO: expand to all stores {% endcomment %}
             <div id="game_info_stores_wrapper">
-                {% comment %} <div id="stores_none" v-if="!current_stores.length">
-                    <p>no steam link</p>
-                </div> {% endcomment %}
                 <div id="game_stores" v-for="store in current_stores">
                     <div id="stores_steam" v-if="store.store_id === 1">
                         <a v-bind:href="store.url"><img id="steam_logo" src="{% static './steam_icon.png' %}"></a>
-                        <p id="steam_not_onsale" v-if="this.current_prices.isOnSale === '0'">Price: [[this.current_prices.normalPrice]]</p>
-                        <p id="steam_onsale" v-if="this.current_prices.isOnSale === '1'">Normal Price: [[this.current_prices.normalPrice]]</p>
-                        <p id="steam_sale" v-if="this.current_prices.isOnSale === '1'">Salel Price: [[this.current_prices.salePrice]]</p>
+                        <template v-if="this.current_prices">
+                            <p id="steam_not_onsale" v-if="this.current_prices.isOnSale === '0'">Price: [[this.current_prices.normalPrice]]</p>
+                            <p id="steam_onsale" v-if="this.current_prices.isOnSale === '1'">Normal Price: [[this.current_prices.normalPrice]]</p>
+                            <p id="steam_sale" v-if="this.current_prices.isOnSale === '1'">Sale Price: [[this.current_prices.salePrice]]</p>
+                        </template>
+                        <template v-if="!this.current_prices">
+                            <p id="no_price">No price info available</p>
+                        </template>
                     </div>
-                    
                 </div>
             </div>
         </div>
             
         <div id="game_media" v-if="searching === 2">
-            
             <div id="big_screenshot">
                 <img id="current_screenshot" :src="this.current_screenshot">
             </div>
@@ -75,10 +71,12 @@
 </div>
 
 <div id="bottom_links_wrapper">
+    
     <div id="popular_sales_wrapper">
     </div>
     <div id="free_games_wrapper">
     </div>
+
 </div>
 
 {% endblock content %}
