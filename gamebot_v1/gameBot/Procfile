@@ -1,2 +1,2 @@
 web: cd gameBot && gunicorn gameBot.wsgi
-release: cd gameBot && python manage.py migrate
+release: python manage.py migrate
