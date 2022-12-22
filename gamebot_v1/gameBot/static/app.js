@@ -2,7 +2,7 @@ const app = Vue.createApp({
     delimiters: ['[[', ']]'],
     data(){
         return{
-            searchInput: 'new world',
+            searchInput: '',
 
             csrfToken: '',
             key: '5f251131a8a34cdd8d63feb4f69c4669',
