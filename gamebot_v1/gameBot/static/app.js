@@ -2,7 +2,7 @@ const app = Vue.createApp({
     delimiters: ['[[', ']]'],
     data(){
         return{
-            searchInput: 'high on life',
+            searchInput: '',
 
             csrfToken: '',
             key: '5f251131a8a34cdd8d63feb4f69c4669',
@@ -121,6 +121,10 @@ const app = Vue.createApp({
             })
         },
 
+        backToSearch(){
+            this.searching = 1
+        },
+
         loadCurrentUser(){
             axios({
                 method: 'get',
@@ -140,9 +144,9 @@ const app = Vue.createApp({
                     "wishlist_owner" : this.currentUser.id,
                     "wishlist_game_name": this.current_game.name,
                     "wishlist_game_steamID": this.steamID,
+                    "wishlist_game_gameID": this.gameID,
                 }})
                 .then(response => {
-                    console.log('game added')
                     this.loadCurrentUserWishlist()
                     }).catch(error => {
                     console.log(error.response)
@@ -167,7 +171,7 @@ const app = Vue.createApp({
                 this.wishlist = response.data
                 this.wishlist = this.wishlist.filter(owner => owner.wishlist_owner === this.currentUser.id)
                 // console.log('wishlist: ')
-                console.log(this.wishlist)
+                // console.log(this.wishlist)
             })
         },
 

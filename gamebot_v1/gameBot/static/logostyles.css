@@ -1,98 +1,81 @@
 .parent {
     position: fixed;
-    /* height:6rem; */
+    width:6rem;
     top: 1rem;
-    left: 30px ;
+    left: 5rem;
 }
 
 .main {
     position: fixed;
-    height:6rem;
+    width:6rem;
     top: 1rem;
-    left: 30px;
-    
+    left: 5rem;
 }
 
 .uparrow {
     position: fixed;
+    width:6rem;
     top: 1rem;
-    left: 30px ;
-    opacity: 0
-    
+    left: 5rem;
+    opacity: 0;
 }
 
 .downarrow {
     position: fixed;
-    top: 30px;
-    left: 30px ;
-    opacity: 0
-    
+    width:6rem;
+    top: 1rem;
+    left: 5rem;
+    opacity: 0;
 }
 
 .face1 {
     position: fixed;
-    top: 30px;
-    left: 30px ;
-    opacity: 0
-    
+    width:6rem;
+    top: 1rem;
+    left: 5rem;
+    opacity: 0;
 }
 
 .face2 {
     position: fixed;
-    top: 30px;
-    left: 30px ;
-    opacity: 0
-    
+    width:6rem;
+    top: 1rem;
+    left: 5rem;
+    opacity: 0;
 }
 
 .face3 {
     position: fixed;
-    top: 30px;
-    left: 30px ;
-    opacity: 0
-    
+    width:6rem;
+    top: 1rem;
+    left: 5rem;
+    opacity: 0;
 }
 
 .face4 {
     position: fixed;
-    top: 30px;
-    left: 30px ;
-    opacity: 0
-    
+    width:6rem;
+    top: 1rem;
+    left: 5rem;
+    opacity: 0;
 }
 
 .leftb {
     position: fixed;
-    top: 30px;
-    left: 30px ;
-    opacity: 0
-    
+    width:6rem;
+    top: 1rem;
+    left: 5rem;
+    opacity: 0;
 }
 
 .rightb {
     position: fixed;
-    top: 30px;
-    left: 30px ;
-    opacity: 0
-    
-}
-
-.test {
-    background-color: #1a1a1a;
-    height:100vh;
-    border-radius: 8px;
+    width:6rem;
+    top: 1rem;
+    left: 5rem;
+    opacity: 0;
 }
 
 .opacity-on {
     opacity: 100;
-}
-
-div.test {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color:aliceblue;
-    padding-top: 1rem;
-    /* border: 1px solid red; */
 }

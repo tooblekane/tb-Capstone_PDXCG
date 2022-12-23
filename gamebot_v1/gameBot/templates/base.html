@@ -14,35 +14,35 @@
     {% csrf_token %}
     <div id="app">
         <div id="navbar">
-        
-            <div id="navbar_left">
+            {% comment %} <div id="navbar_left">
                 <a href=""><img id="logo" src="{% static './gamebot_logo.png' %}"></a>
-                {% comment %} <div id="direction"> {% endcomment %}
-                    {% comment %} <div class="parent test">
-                        <img class="main" src="{% static 'gamebot_logo.png' %}" />
-                        <img class="uparrow" src="{% static 'up_arrow.png' %}" />
-                        <img class="downarrow" src="{% static 'down_arrow.png' %}" />
-                        <img class="face1" src="{% static 'face1.png' %}" />
-                        <img class="face2" src="{% static 'face2.png' %}" />
-                        <img class="face3" src="{% static 'face3.png' %}" />
-                        <img class="face4" src="{% static 'face4.png' %}" />
-                        <img class="leftb" src="{% static 'left_button.png' %}" />
-                        <img class="rightb" src="{% static 'left_button.png' %}" />
-                    </div>
-                    {% endcomment %}
+            </div> {% endcomment %}
+            
+            <a id ="logo_home" href=""></a>
+            <div id="direction">
+                <div class="parent test">
+                    <img class="main" src="{% static 'gamebot_logo.png' %}">
+                    <img class="uparrow" src="{% static 'up_arrow.png' %}" />
+                    <img class="downarrow" src="{% static 'down_arrow.png' %}" />
+                    <img class="face1" src="{% static 'face1.png' %}" />
+                    <img class="face2" src="{% static 'face2.png' %}" />
+                    <img class="face3" src="{% static 'face3.png' %}" />
+                    <img class="face4" src="{% static 'face4.png' %}" />
+                    <img class="leftb" src="{% static 'left_button.png' %}" />
+                    <img class="rightb" src="{% static 'left_button.png' %}" />
                 </div>
-            {% comment %} </div> {% endcomment %}
+            </div>
             
             <div id="navbar_middle">
                 <input id="search_input" type="text" v-model="searchInput" @keydown.enter="gameSearch()">
-                <button @click="gameSearch()">Go</button>
+                <button id="button_search" @click="gameSearch()">search</button>
             </div>
 
             <div id="navbar_right">
                 {% if user.is_authenticated %}
-                <a href="">wishlist</a><br><br>
+                {% comment %} <a href="">wishlist</a><br><br> {% endcomment %}
                 <a href="{% url 'users:profile' user.username %}">[[currentUser.username]]</a>
-                
+                <img id="user_avatar" src="{% static './avatar.jpeg' %}">
                 <a href="{% url 'logout' %}"><img id="logout_icon" title="logout" src="{% static './logout_icon.png' %}"></a>
                 {% else %}
                     <a href="{% url 'users:signup' %}">signup</a>
@@ -58,7 +58,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="{% static '/logo.js' %}"></script> 
+    <script src="{% static '/logo.js' %}" defer></script> 
     <script src="{% static '/app.js' %}"></script> 
     <script> const mountApp = app.mount('#app') </script>
 

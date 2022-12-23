@@ -39,12 +39,17 @@ html, body {
     filter: saturate(500%) contrast(800%) brightness(500%) invert(80%) sepia(50%) hue-rotate(120deg);
 }
 
+#user_avatar {
+    height: 3.5rem;
+    outline: 3px solid rgba(9, 1, 16, 0.8);
+}
+
 #logout_icon:hover {
     filter: none;
 }
 
 /* *Remove these when animated logo works */
-#navbar_left {
+/* #navbar_left {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -54,8 +59,18 @@ html, body {
     height: 6rem;
     padding-top: 2rem;
     padding-left: 3rem;
-}
+} */
 /*  */
+
+#logo_home {
+    display: flex;
+    position: fixed;
+    top: 1rem;
+    left: 4rem;
+    width: 6rem;
+    height: 6rem;
+    z-index: 99;
+}
 
 #navbar_right {
     display: flex;
@@ -70,13 +85,19 @@ html, body {
 }
 
 #search_input {
-    /* width: 30rem; */
+    width: 20rem;
     height: 1.5rem;
     padding-left: 1rem;
-    background-color: rgba(9, 1, 16, 0.5);
-    color: white;
     border: 0;
+    color: white;
     outline: 3px solid rgba(9, 1, 16, 0.8);
+    background-color: #4c4c4c;
+}
+
+#button_search {
+    color: white;
+    outline: 3px solid rgba(9, 1, 16, 0.8);
+    background-color: #4c4c4c;
 }
 
 #main_wrapper {
@@ -166,12 +187,22 @@ html, body {
     position: relative;
     justify-content: space-around;
     /* gap: 2rem; */
-    height: 60vh;
+    height: 67vh;
     width: 85vw;
     font-size: 5pt;
     margin-top: 2rem;
     background-color: #26292e;
     /* border: 1px dashed darkred; */
+}
+
+#back_button {
+    position: fixed;
+    top: 11vh;
+    left: 12vw;
+    width: fit-content;
+    padding: 0.3rem;
+    outline: 1px solid #2d3b56;
+    background-color: rgba(58, 15, 32, 0.5);
 }
 
 #game_info {
@@ -180,6 +211,7 @@ html, body {
     position: absolute;
     justify-content: flex-start;
     left: 0;
+    top: 1rem;
     margin: 1rem;
     height: 100%;
     /* width: 50%; */
@@ -245,7 +277,7 @@ html, body {
     display: flex;
     flex-direction: column;
     position: absolute;
-    bottom: 1rem;
+    bottom: 3rem;
     height: min-content;
     max-height: 25%;
     width: 40vw;
@@ -351,16 +383,22 @@ html, body {
     /* border: 1px solid red; */
 }
 
-#popular_sales_wrapper {
+#price_history_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 15vh;
     width: 42.5vw;
-    background-color: #090110;
     border: 1px solid orange;
+    background-color: #090110;
 }
 
-#free_games_wrapper {
+#related_links_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 15vh;
     width: 41.5vw;
-    background-color: #090110;
     border: 1px solid orange;
+    background-color: #090110;
 }

@@ -16,11 +16,11 @@ class CustomUser(AbstractUser):
         return self.username
 
 class Wishlist(models.Model):
-    # user = models.ManyToManyField(CustomUser, related_name="wishlist")
     wishlist_item_id = models.AutoField(primary_key=True)
     wishlist_owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="wishlist", null=True)
     wishlist_game_name = models.CharField(max_length=50, null=True)
     wishlist_game_steamID = models.CharField(max_length=50, null=True)
+    wishlist_game_gameID = models.CharField(max_length=50, null=True)
 
     def __str__(self):
         return f'{self.wishlist_owner} - {self.wishlist_game_name}'

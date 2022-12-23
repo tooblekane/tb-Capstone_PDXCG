@@ -6,7 +6,7 @@
     
     <div class="wrapper" id="wishlist"> 
         <div id="wishlist_item" v-for="(wish_game, wishlist_item_id) in wishlist">
-            <p v-if="this.currentUser.id === wish_game.wishlist_owner">[[wish_game.wishlist_game_name]]</p>
+            <p v-if="this.currentUser.id === wish_game.wishlist_owner" @click="getGameInfo(wish_game.wishlist_game_gameID)">[[wish_game.wishlist_game_name]]</p>
             <p id="wishlist_remove" v-if="this.currentUser.id === wish_game.wishlist_owner" @click="removeFromWishlist(wish_game.wishlist_item_id)">x</p>
         </div>
     </div>
@@ -21,6 +21,7 @@
     <div id="game_page" v-if="searching === 2">
         <img id="bg_image" :src="this.background_image" v-if="background_image">
         <div id="game_info">
+            <p id="back_button" @click="backToSearch()" v-if="this.game_search">back to search</p>
             <div id="game_name">
                 <p>[[this.current_game.name]]</p>
                 {% comment %} <p>[[this.current_game.id]]</p> {% endcomment %}
@@ -72,9 +73,11 @@
 
 <div id="bottom_links_wrapper">
     
-    <div id="popular_sales_wrapper">
+    <div id="price_history_wrapper">
+        <p>price history information</p>
     </div>
-    <div id="free_games_wrapper">
+    <div id="related_links_wrapper">
+        <p>links to developer and related games</p>
     </div>
 
 </div>

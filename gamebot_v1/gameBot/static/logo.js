@@ -11,23 +11,19 @@ let rightb = document.querySelector('.rightb')
 document.addEventListener('keydown',function(e) {
     
     if (e.key == 'ArrowUp') {
-        console.log('pressed', 'key:' + e.key, 'keyCode:' + e.keyCode)
+        // console.log('pressed', 'key:' + e.key, 'keyCode:' + e.keyCode)
         uparrow.classList.add('opacity-on')
-        console.log('up')
+        // console.log('up')
     }
     else if (e.key == 'ArrowDown') {
-        // console.log('pressed', 'key:' + e.key, 'keyCode:' + e.keyCode);
         downarrow.classList.add('opacity-on')
-        console.log('down')
+        // console.log('down')
     } 
     else {
         var facelist = [face1, face2, face3, face4, leftb, rightb]
-        // console.log(face1)
         let randomface = facelist[Math.floor(Math.random() * facelist.length)]
-        // console.log('any:', facelist[Math.floor(Math.random() * facelist.length)])
         randomface.classList.add('opacity-on')
-        // console.log('pressed', 'key:' + e.key, 'keyCode:' + e.keyCode);
-        console.log('anything else')
+        // console.log('anything else')
     }
     
     document.addEventListener('keyup',function(e) {
@@ -43,4 +39,4 @@ document.addEventListener('keydown',function(e) {
 })
 
 var oldScrollY = window.scrollY
-// var directionText = document.getElementById('direction');
+var directionText = document.getElementById('direction');
