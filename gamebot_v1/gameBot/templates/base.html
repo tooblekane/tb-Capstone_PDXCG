@@ -17,7 +17,21 @@
         
             <div id="navbar_left">
                 <a href=""><img id="logo" src="{% static './gamebot_logo.png' %}"></a>
-            </div>
+                {% comment %} <div id="direction"> {% endcomment %}
+                    {% comment %} <div class="parent test">
+                        <img class="main" src="{% static 'gamebot_logo.png' %}" />
+                        <img class="uparrow" src="{% static 'up_arrow.png' %}" />
+                        <img class="downarrow" src="{% static 'down_arrow.png' %}" />
+                        <img class="face1" src="{% static 'face1.png' %}" />
+                        <img class="face2" src="{% static 'face2.png' %}" />
+                        <img class="face3" src="{% static 'face3.png' %}" />
+                        <img class="face4" src="{% static 'face4.png' %}" />
+                        <img class="leftb" src="{% static 'left_button.png' %}" />
+                        <img class="rightb" src="{% static 'left_button.png' %}" />
+                    </div>
+                    {% endcomment %}
+                </div>
+            {% comment %} </div> {% endcomment %}
             
             <div id="navbar_middle">
                 <input id="search_input" type="text" v-model="searchInput" @keydown.enter="gameSearch()">
@@ -44,8 +58,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="{% static '/app.js' %}"></script> 
     <script src="{% static '/logo.js' %}"></script> 
+    <script src="{% static '/app.js' %}"></script> 
     <script> const mountApp = app.mount('#app') </script>
 
 </body>

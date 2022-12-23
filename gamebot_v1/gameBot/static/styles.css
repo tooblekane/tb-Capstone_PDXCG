@@ -25,18 +25,13 @@ html, body {
     margin-top:1rem;
     padding-block: 1rem;
     padding-right: 4rem;
+    
 }
 
 #navbar a {
     padding-top: 0.2rem;
     text-decoration: none;
     color: white;
-}
-
-#logo {
-    height: 6rem;
-    padding-top: 2rem;
-    padding-left: 3rem;
 }
 
 #logout_icon {
@@ -48,7 +43,21 @@ html, body {
     filter: none;
 }
 
-#navbar_left, #navbar_right {
+/* *Remove these when animated logo works */
+#navbar_left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#logo {
+    height: 6rem;
+    padding-top: 2rem;
+    padding-left: 3rem;
+}
+/*  */
+
+#navbar_right {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -59,8 +68,9 @@ html, body {
     align-items: center;
     gap: 1rem;
 }
+
 #search_input {
-    width: 30rem;
+    /* width: 30rem; */
     height: 1.5rem;
     padding-left: 1rem;
     background-color: rgba(9, 1, 16, 0.5);
