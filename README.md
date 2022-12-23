@@ -1,5 +1,5 @@
 
-# GameBot (working title)
+# GameBot
 
 The aim of this website is to give patient (or lazy) gamers one spot to find sale information on games they
 have been interested in, but haven't yet purchased.  Compare prices across different digital storefronts,
