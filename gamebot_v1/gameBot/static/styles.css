@@ -90,13 +90,15 @@ html, body {
     padding-left: 1rem;
     border: 0;
     color: white;
-    outline: 3px solid rgba(9, 1, 16, 0.8);
+    outline: 2px solid rgba(9, 1, 16, 0.8);
     background-color: #4c4c4c;
 }
 
 #button_search {
+    padding: 0.1rem 0.2rem;
+    
     color: white;
-    outline: 3px solid rgba(9, 1, 16, 0.8);
+    /* outline: 2px solid rgba(9, 1, 16, 0.8); */
     background-color: #4c4c4c;
 }
 
