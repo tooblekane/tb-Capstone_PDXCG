@@ -52,7 +52,6 @@ Game Page
 ## Schedule 
 
 Week 1
-- Come up with a better name than GameBot
 - Get basic layout built and functional with minimal information and graphics
 - Add API information for games
 
@@ -66,6 +65,3 @@ Week 3
 Stretch Goals
 - Notifications based on user preferences
 - Light / dark mode
-
-
-
