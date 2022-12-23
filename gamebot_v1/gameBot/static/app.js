@@ -167,7 +167,7 @@ const app = Vue.createApp({
                 this.wishlist = response.data
                 this.wishlist = this.wishlist.filter(owner => owner.wishlist_owner === this.currentUser.id)
                 // console.log('wishlist: ')
-                // console.log(this.wishlist)
+                console.log(this.wishlist)
             })
         },
 
