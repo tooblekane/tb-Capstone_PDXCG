@@ -132,57 +132,21 @@ const app = Vue.createApp({
         },
 
         addToWishlist(id){
-            // console.log(this.wishlist)
-            
-            if (this.wishlist.length === 0) {
-                console.log('wishlist is empty')
-                axios({
-                    method: 'post',
-                    url: '/api/wishlist/',
-                    headers: {'X-CSRFToken': this.csrfToken},
-                    data: {
-                        "wishlist_owner" : this.currentUser.id,
-                        "wishlist_game_name": this.current_game.name,
-                        "wishlist_game_steamID": this.steamID,
-                    }})
-                    .then(response => {
-                        console.log('game added')
-                        this.loadCurrentUserWishlist()
-                        }).catch(error => {
-                        console.log(error.response)
-                    })
-                }
-
-            if (this.wishlist.length != 0) {
-                // console.log('wishlist is not empty')
-                console.log(this.current_game)
-                // console.log('steamID: ', this.steamID)
-                for (let i = 0; i < this.wishlist.length; i++) {
-                    if (this.steamID == this.wishlist[i].wishlist_game_steamID) {
-                        // console.log('already on list')
-                        // console.log('wishlist steamID: ', this.wishlist[i].wishlist_game_steamID)
-                        // break
-                    }
-                    else if (this.steamID != this.wishlist[i].wishlist_game_steamID) {
-                        console.log('game not on list')
-                        axios({
-                            method: 'post',
-                            url: '/api/wishlist/',
-                            headers: {'X-CSRFToken': this.csrfToken},
-                            data: {
-                                "wishlist_owner" : this.currentUser.id,
-                                "wishlist_game_name": this.current_game.name,
-                                "wishlist_game_steamID": this.steamID,
-                    }})
-                    .then(response => {
-                        // console.log('game added')
-                        this.loadCurrentUserWishlist()
+            axios({
+                method: 'post',
+                url: '/api/wishlist/',
+                headers: {'X-CSRFToken': this.csrfToken},
+                data: {
+                    "wishlist_owner" : this.currentUser.id,
+                    "wishlist_game_name": this.current_game.name,
+                    "wishlist_game_steamID": this.steamID,
+                }})
+                .then(response => {
+                    console.log('game added')
+                    this.loadCurrentUserWishlist()
                     }).catch(error => {
-                        console.log(error.response)
-                    })
-                }}}
-            
-            
+                    console.log(error.response)
+                })
             },
 
         removeFromWishlist(id){
@@ -203,7 +167,7 @@ const app = Vue.createApp({
                 this.wishlist = response.data
                 this.wishlist = this.wishlist.filter(owner => owner.wishlist_owner === this.currentUser.id)
                 // console.log('wishlist: ')
-                console.log(this.wishlist)
+                // console.log(this.wishlist)
             })
         },
 

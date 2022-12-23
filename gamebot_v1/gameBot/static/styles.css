@@ -22,6 +22,9 @@ html, body {
     justify-content: space-between;
     height: 1.5rem;
     gap: 1rem;
+    margin-top:1rem;
+    padding-block: 1rem;
+    padding-right: 4rem;
 }
 
 #navbar a {
@@ -31,7 +34,18 @@ html, body {
 }
 
 #logo {
-    height: 2rem;
+    height: 6rem;
+    padding-top: 2rem;
+    padding-left: 3rem;
+}
+
+#logout_icon {
+    height: 1.5rem;
+    filter: saturate(500%) contrast(800%) brightness(500%) invert(80%) sepia(50%) hue-rotate(120deg);
+}
+
+#logout_icon:hover {
+    filter: none;
 }
 
 #navbar_left, #navbar_right {
@@ -40,42 +54,79 @@ html, body {
     gap: 1rem;
 }
 
+#navbar_middle {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+#search_input {
+    width: 30rem;
+    height: 1.5rem;
+    padding-left: 1rem;
+    background-color: rgba(9, 1, 16, 0.5);
+    color: white;
+    border: 0;
+    outline: 3px solid rgba(9, 1, 16, 0.8);
+}
+
 #main_wrapper {
     display: flex;
     justify-content: left;
-    height: 60vh;
-    width: 100vw;
+    height: 71vh;
+    width: 96vw;
     gap: 1rem;
     margin: 1rem;
+    
+    /* border: 1px solid red; */
 }
 
 /****** WISH LIST ******/
 #wishlist {
     display: flex;
     flex-direction: column;
-    height: 60vh;
+    height: 85vh;
     width: 10vw;
     font-size: 8pt;
-    background-color: #26292e;
+    margin-top: 2rem;
+    
+    background-color: rgba(38, 41, 46, 1);
+    /* border: 1px solid red; */
+}
+
+#wishlist p{
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+
+#wishlist_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    /* border: 1px solid red; */
 }
 
 #wishlist_remove{
-    text-align: center;
+    font-size: 8pt;
     width: fit-content;
+    text-align: center;
+    margin-bottom: 1rem;
+    margin-right: 0.5rem;
     padding: 0.1rem 0.3rem;
     background-color: rgba(255, 0, 0, 0.316);
+    border: 1px solid red;
     border-radius: 5px;
-    margin-block: 0rem;
-    /* border: 1px solid red; */
 }
 
 /****** SEARCH ******/
 #game_search_wrapper {
     display: flex;
     flex-direction: column;
-    height: 60vh;
-    width: 80vw;
+    height: 67vh;
+    width: 85vw;
     gap: 1rem;
+    margin-top: 2rem;
+    padding-left: 1rem;
     overflow: hidden;
     text-overflow: ellipsis;
     background-color: #26292e;
@@ -88,6 +139,7 @@ html, body {
     flex-direction: column;
     font-size: xx-small;
     height: 60vh;
+    /* padding: 1rem; */
 }
 
 /****** GAME INFO ******/
@@ -107,6 +159,7 @@ html, body {
     height: 60vh;
     width: 85vw;
     font-size: 5pt;
+    margin-top: 2rem;
     background-color: #26292e;
     /* border: 1px dashed darkred; */
 }
@@ -281,21 +334,23 @@ html, body {
 #bottom_links_wrapper {
     display: flex;
     justify-content: space-between;
+    align-self: flex-end;
     height: 25vh;
-    width: 95vw;
-    margin-inline: auto;
+    width: 85vw;
+    margin-right: 2.8vw;
+    /* border: 1px solid red; */
 }
 
 #popular_sales_wrapper {
-    height: 25vh;
-    width: 58vw;
+    height: 15vh;
+    width: 42.5vw;
     background-color: #090110;
     border: 1px solid orange;
 }
 
 #free_games_wrapper {
-    height: 25vh;
-    width: 35vw;
+    height: 15vh;
+    width: 41.5vw;
     background-color: #090110;
     border: 1px solid orange;
 }

@@ -5,14 +5,14 @@
 <div id="main_wrapper">
     
     <div class="wrapper" id="wishlist"> 
-        <template v-for="(wish_game, wishlist_item_id) in wishlist">
+        <div id="wishlist_item" v-for="(wish_game, wishlist_item_id) in wishlist">
             <p v-if="this.currentUser.id === wish_game.wishlist_owner">[[wish_game.wishlist_game_name]]</p>
-            <p id="wishlist_remove" v-if="this.currentUser.id === wish_game.wishlist_owner" @click="removeFromWishlist(wish_game.wishlist_item_id)">remove</p>
-        </template>
+            <p id="wishlist_remove" v-if="this.currentUser.id === wish_game.wishlist_owner" @click="removeFromWishlist(wish_game.wishlist_item_id)">x</p>
+        </div>
     </div>
     
     <div id="game_search_wrapper" v-if="searching != 2">
-        <p v-if="searching === 0">No game chosen</p>
+        <p v-if="searching === 0">Search for a game...</p>
         <div id="game_search_results" v-for="game in game_search">
             <p @click="getGameInfo(game.id)">[[game.name]]</p>
         </div>
@@ -28,7 +28,7 @@
             </div>
             
             <div id="wishlist_add">
-                <img id="wishlist_add" @click="addToWishlist(this.steamID)" src="{% static './wishlist.png' %}">
+                <img id="wishlist_add" title="add to wishlist" @click="addToWishlist(this.steamID)" src="{% static './wishlist.png' %}">
             </div>
             
             <div id="game_genre_list">
